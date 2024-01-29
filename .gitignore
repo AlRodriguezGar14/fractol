@@ -1,0 +1,8 @@
+.DS_Store
+*.out
+*.dSYM
+*.o
+*.a
+.vscode
+mlx/
+fractol
