@@ -3,6 +3,7 @@ MINILIBX_DIR = mlx/
 MINILIBX = $(MINILIBX_DIR)libmlx.a
 FRACTOL_DIR  = .
 CFLAGS   = -Wall -Wextra -Werror -g3 -fsanitize=address 
+# CFLAGS   = -Wall -Wextra -Werror -g3
 HEADERS  = -I $(FRACTOL_DIR)
 NAME     = fractol
 RM       = rm -rf
