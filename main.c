@@ -85,6 +85,7 @@ int	key_hook(int keycode, t_vars *vars)
 	if (keycode == 53)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
+        free(vars->mlx);
 		exit(1);
 	}
 	printf("Hi from the key hook: %d\n", keycode);
@@ -94,7 +95,13 @@ int	key_hook(int keycode, t_vars *vars)
 int	mouse_hook(int keycode, t_vars *vars)
 {
 	(void)vars;
-	printf("Hi from the mouse hook: %d\n", keycode);
+    if (keycode == 4)
+	    printf("Zoom in\n");
+    else if (keycode == 5)
+	    printf("Zoom out\n");
+    else
+	    printf("Hi from the mouse hook: %d\n", keycode);
+
 	return (0);
 }
 
@@ -105,8 +112,10 @@ int	mouse_position(int x, int y, t_vars *vars)
 	return (0);
 }
 
-int	close_window()
+int	close_window(t_vars *vars)
 {
+	mlx_destroy_window(vars->mlx, vars->win);
+    free(vars->mlx);
 	exit(1);
 }
 
@@ -134,6 +143,7 @@ int main(void)
 	mlx_hook(vars.win, 17, 0, close_window, &vars);
     mlx_loop_hook(vars.mlx, print_boxes, &vars);
     mlx_loop(vars.mlx);
+
 
     return (0);
 }
