@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 21:05:53 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/01 20:31:07 by alberrod         ###   ########.fr       */
+/*   Created: 2023/12/11 21:12:54 by alberrod          #+#    #+#             */
+/*   Updated: 2023/12/11 21:13:06 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef FRACTOL_H
-#	define FRACTOL_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <math.h>
-# include "mlx/mlx.h"
-# include "utils/libft.h"
+void	*ft_memset(void *buffer, int val, size_t len)
+{
+	unsigned char	*p;
 
-#define WIDTH 864 
-#define HEIGHT 486 
-
-
-# endif
+	p = buffer;
+	while (len--)
+		*p++ = (unsigned char)val;
+	return (buffer);
+}

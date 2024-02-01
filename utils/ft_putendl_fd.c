@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 21:05:53 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/01 20:31:07 by alberrod         ###   ########.fr       */
+/*   Created: 2023/12/11 21:14:03 by alberrod          #+#    #+#             */
+/*   Updated: 2023/12/15 08:11:19 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef FRACTOL_H
-#	define FRACTOL_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <math.h>
-# include "mlx/mlx.h"
-# include "utils/libft.h"
-
-#define WIDTH 864 
-#define HEIGHT 486 
-
-
-# endif
+void	ft_putendl_fd(char *s, int fd)
+{
+	if (!(s && fd))
+		return ;
+	ft_putstr_fd(s, fd);
+	write(fd, "\n", 1);
+}

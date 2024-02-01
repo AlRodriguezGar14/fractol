@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 21:05:53 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/01 20:31:07 by alberrod         ###   ########.fr       */
+/*   Created: 2023/12/13 15:40:42 by alberrod          #+#    #+#             */
+/*   Updated: 2023/12/13 15:40:53 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef FRACTOL_H
-#	define FRACTOL_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <math.h>
-# include "mlx/mlx.h"
-# include "utils/libft.h"
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*current;
 
-#define WIDTH 864 
-#define HEIGHT 486 
-
-
-# endif
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	current = *lst;
+	while (current->next)
+		current = current->next;
+	current->next = new;
+}

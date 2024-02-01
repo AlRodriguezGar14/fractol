@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 21:05:53 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/01 20:31:07 by alberrod         ###   ########.fr       */
+/*   Created: 2023/12/13 15:42:55 by alberrod          #+#    #+#             */
+/*   Updated: 2023/12/13 15:42:56 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef FRACTOL_H
-#	define FRACTOL_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <math.h>
-# include "mlx/mlx.h"
-# include "utils/libft.h"
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*new_l;
 
-#define WIDTH 864 
-#define HEIGHT 486 
-
-
-# endif
+	new_l = malloc(sizeof(struct s_list));
+	if (!new_l)
+		return (NULL);
+	new_l->content = content;
+	new_l->next = NULL;
+	return (new_l);
+}

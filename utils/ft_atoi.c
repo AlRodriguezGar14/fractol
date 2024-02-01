@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 21:05:53 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/01 20:31:07 by alberrod         ###   ########.fr       */
+/*   Created: 2023/12/11 20:55:16 by alberrod          #+#    #+#             */
+/*   Updated: 2024/01/09 17:11:04 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef FRACTOL_H
-#	define FRACTOL_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <math.h>
-# include "mlx/mlx.h"
-# include "utils/libft.h"
+int	ft_atoi(const char *str)
+{
+	int		operator;
+	long	output;
 
-#define WIDTH 864 
-#define HEIGHT 486 
-
-
-# endif
+	while ((*str >= 9 && *str <= 13) || *str == ' ')
+		str++;
+	operator = 1;
+	if (*str == '-')
+	{
+		operator *= -1;
+		str++;
+	}
+	else if (*str == '+')
+		str++;
+	output = 0;
+	while (ft_isdigit(*str))
+	{
+		output = output * 10 + (*str - '0');
+		str++;
+	}
+	return (output * operator);
+}

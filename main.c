@@ -5,35 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 20:00:41 by alberrod          #+#    #+#             */
-/*   Updated: 2024/01/30 01:13:57y alberrod         ###   ########.fr       */
+/*   Created: 2024/02/01 19:28:17 by alberrod          #+#    #+#             */
+/*   Updated: 2024/02/01 19:51:48by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
-#include <stdlib.h>
 
-typedef struct s_data
+typedef struct s_img
 {
     void    *img;
     char    *addr;
     int     bits_per_pixel;
     int     line_length;
     int     endian;
-}   t_data;
+}   t_img;
 
-typedef struct s_vars
+typedef struct s_fractal
 {
 	void	*mlx;
 	void	*win;
-	int		color_a;
-	int		color_b;
-    t_data  img;
-}	t_vars;
+	int		color_base;
+	char	*name;
+    t_img 	*img;
+}	t_fractal;
 
 
-void    my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void    my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {
     char    *dst;
     int     offset;
@@ -43,107 +41,52 @@ void    my_mlx_pixel_put(t_data *data, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
-int print_boxes(t_vars *vars)
+void	print_box(t_fractal *fractal)
 {
-   // Draw first set of colors
-    int idx = 0;
-    int jdx = 0;
-    while (idx++ < HEIGHT / 2)
+    int	idx = 0;
+    int	jdx;
+
+    while (idx++ < HEIGHT / 2 - 1)
     {
         jdx = 0;
-        while (jdx++ < WIDTH - 1)
-            my_mlx_pixel_put(&(*vars).img, jdx, idx, (*vars).color_a);
+        while (jdx++ < WIDTH / 4 - 1)
+        {
+            my_mlx_pixel_put(fractal->img, jdx, idx, fractal->color_base);
+        }
     }
-
-    // Display first set of colors
-    mlx_put_image_to_window((*vars).mlx, (*vars).win, (*vars).img.img, 0, 0);
-
-    // Draw second set of colors
-    idx = HEIGHT / 2;
-    jdx = 0;
-    while (idx++ < HEIGHT - 1)
-    {
-        jdx = 0;
-        while (jdx++ < WIDTH - 1)
-            my_mlx_pixel_put(&(*vars).img, jdx, idx, (*vars).color_b);
-    }
-
-    // Display second set of colors
-    mlx_put_image_to_window((*vars).mlx, (*vars).win, (*vars).img.img, 0, 0);
-
-    // Display the final image
-    mlx_put_image_to_window((*vars).mlx, (*vars).win, (*vars).img.img, 0, 0);
-
-	(*vars).color_a -= 2000;
-	(*vars).color_b += 2000;
-    return (0);
+    mlx_put_image_to_window(fractal->mlx, fractal->win, fractal->img->img, 0, 0);
 }
 
-
-int	key_hook(int keycode, t_vars *vars)
+void	fractal_init(t_fractal *fractal)
 {
-	if (keycode == 53)
-	{
-		mlx_destroy_window(vars->mlx, vars->win);
-        free(vars->mlx);
-		exit(1);
-	}
-	printf("Hi from the key hook: %d\n", keycode);
-	return (0);
+	t_img	*img;
+
+	img = malloc(sizeof(t_img));
+	fractal->mlx = mlx_init();
+	fractal->win = mlx_new_window(fractal->mlx, WIDTH, HEIGHT, fractal->name);
+    img->img = mlx_new_image(fractal->mlx, WIDTH, HEIGHT);
+    img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+	fractal->img = img;
+	fractal->color_base = 0x99bbff;
 }
 
-int	mouse_hook(int keycode, t_vars *vars)
+int	main(int argc, char **argv)
 {
-	(void)vars;
-    if (keycode == 4)
-	    printf("Zoom in\n");
-    else if (keycode == 5)
-	    printf("Zoom out\n");
-    else
-	    printf("Hi from the mouse hook: %d\n", keycode);
-
-	return (0);
-}
-
-int	mouse_position(int x, int y, t_vars *vars)
-{
-	(void)vars;
-	printf("mouse position:\n\tx: %d\n\ty: %d\n", x, y);
-	return (0);
-}
-
-int	close_window(t_vars *vars)
-{
-	mlx_destroy_window(vars->mlx, vars->win);
-    free(vars->mlx);
-	exit(1);
-}
-
-int main(void)
-{
-    t_data  img;
-	t_vars	vars;
-
-    vars.mlx = mlx_init();
-    vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Hello world!");
-
-    img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
-    img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-
-    vars.img = img;
-
-	vars.color_a = 0xffff00;
-	vars.color_b = 0x0000ff;
-
-	// print_boxes(&vars);
+	t_fractal	*fractal;
 	
-	mlx_key_hook(vars.win, key_hook, &vars);
-	mlx_mouse_hook(vars.win, mouse_hook, &vars);
-	mlx_hook(vars.win, 6, 0, mouse_position, &vars);
-	mlx_hook(vars.win, 17, 0, close_window, &vars);
-    mlx_loop_hook(vars.mlx, print_boxes, &vars);
-    mlx_loop(vars.mlx);
+	if (argc != 2)
+	{
+		ft_fd_printf(2, "How to use: ./fractol mandelbrot\n");
+		return (0);
+	}
 
+	fractal = (t_fractal *)malloc(sizeof(t_fractal));
+	if (!fractal)
+		return -1;
+	fractal->name = ft_sprintf("%s", argv[1]);
+	fractal_init(fractal);
+	print_box(fractal);
 
-    return (0);
+	mlx_loop(fractal->mlx);
+	return (0);
 }
