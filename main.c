@@ -74,7 +74,7 @@ void	init_fractal(t_data *data)
 {
 
 	data->color_base = 0x99bbff;
-	data->zoom = 10;
+	data->zoom = 100;
 	data->x = 0;
 	data->y = 0;
 	data->offset_x = -1.21;
@@ -97,6 +97,29 @@ void	fill_with_blocks(t_data *fractal, int size)
 		}
 		y += size;
 	}
+}
+
+// The x y are the coordenates of the mouse included by the library when
+// calling the function. The offset is to zoom to the location of the mouse
+int	mouse_hook(int keycode, int x, int y, t_data *fractal)
+{
+	double	zoom_level;
+
+	zoom_level = 1.42;
+	if (keycode == ZOOM_IN)
+	{
+		fractal->offset_x = (x / fractal->zoom + fractal->offset_x) - (x / (fractal->zoom * zoom_level));
+		fractal->offset_y = (y / fractal->zoom + fractal->offset_y) - (y / (fractal->zoom * zoom_level));
+		fractal->zoom *= zoom_level;
+	}
+	if (keycode == ZOOM_OUT && fractal->zoom >= 50)
+	{
+		fractal->offset_x = (x / fractal->zoom + fractal->offset_x) - (x / (fractal->zoom / zoom_level));
+		fractal->offset_y = (y / fractal->zoom + fractal->offset_y) - (y / (fractal->zoom / zoom_level));
+		fractal->zoom /= zoom_level;
+	}
+	printf("zoom: %f\n", fractal->zoom);
+	return (0);
 }
 
 int	key_hook(int keycode, t_data *fractal)
@@ -136,6 +159,7 @@ int	main(int argc, char **argv)
 	init_mlx(fractal);
 	fill_with_blocks(fractal, 50);
 	mlx_key_hook(fractal->win, key_hook, fractal);
+	mlx_mouse_hook(fractal->win, mouse_hook, fractal);
 	mlx_hook(fractal->win, 17, 0, close_window, fractal);
 	mlx_loop(fractal->mlx);
 
