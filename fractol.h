@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 21:05:53 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/02 19:06:06 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/02 22:28:00 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,18 @@
 # include "mlx/mlx.h"
 # include "utils/libft.h"
 
-#define WIDTH 864 
-#define HEIGHT 486 
+// #define WIDTH 864 
+// #define HEIGHT 486 
+#define WIDTH 1280 
+#define HEIGHT 720 
+
 #define ZOOM_IN 4 
 #define ZOOM_OUT 5 
 #define ESC 53 
+#define LEFT 123 
+#define RIGHT 124 
+#define UP 126 
+#define DOWN 125 
 
 
 typedef struct s_fractal
@@ -45,10 +52,14 @@ typedef struct s_fractal
 	double	offset_x;
 	double	offset_y;
 	double	zoom;
-	double	zx;
-	double	zy;
-	double	cx;
-	double	cy;
+	double	z_real;
+	double	z_imaginary;
+	double	c_real;
+	double	c_imaginary;
+	double	x_range_min;
+	double	x_range_max;
+	double	y_range_min;
+	double	y_range_max;
 
 }	t_fractal;
 
@@ -65,4 +76,10 @@ void	draw(t_fractal *fractal);
 int	close_window(t_fractal *fractal);
 int	mouse_hook(int keycode, int x, int y, t_fractal *fractal);
 int	key_hook(int keycode, t_fractal *fractal);
+
+// Movement
+void	move_left(t_fractal *fractal);
+void	move_right(t_fractal *fractal);
+void	move_down(t_fractal *fractal);
+void	move_up(t_fractal *fractal);
 # endif
