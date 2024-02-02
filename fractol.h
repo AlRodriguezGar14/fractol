@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 21:05:53 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/02 22:28:00 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/03 00:00:54 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # include "mlx/mlx.h"
 # include "utils/libft.h"
 
-// #define WIDTH 864 
-// #define HEIGHT 486 
-#define WIDTH 1280 
-#define HEIGHT 720 
+// #define WIDTH 400 
+// #define HEIGHT 240 
+#define WIDTH 864 
+#define HEIGHT 486 
 
 #define ZOOM_IN 4 
 #define ZOOM_OUT 5 
@@ -33,6 +33,8 @@
 #define RIGHT 124 
 #define UP 126 
 #define DOWN 125 
+#define PLUS 35 
+#define MINUS 46 
 
 
 typedef struct s_fractal
@@ -67,6 +69,9 @@ typedef struct s_fractal
 // Init
 void	init_fractal(t_fractal *fractal, char *name);
 void	init_mlx(t_fractal *fractal);
+
+// Scale canvas
+double	scale(double unscaled, double old_max, double new_min, double new_max);
 
 // Draw
 void    my_mlx_pixel_put(t_fractal *fractal, int x, int y, int color);

@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:13:29 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/02 22:20:59 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/03 00:04:30 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	init_fractal(t_fractal *fractal, char *name)
 	fractal->zoom = 1;
 	fractal->x = 0;
 	fractal->y = 0;
-	// fractal->offset_x = -2.0 * (double)WIDTH/HEIGHT;
-	// fractal->offset_y = -2.0;
 	fractal->x_range_min = -2.0;
 	fractal->x_range_max = 2.0;
 	fractal->y_range_min = -2.0;
