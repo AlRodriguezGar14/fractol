@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:19:23 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/03 00:07:07 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/03 00:59:26 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void zoom_in(t_fractal *fractal, int x, int y)
 {
     double zoom_factor = 0.5; // Change this to zoom in by a different amount
 	fractal->zoom *= zoom_factor;
+	if (fractal->zoom < 0.05)
+		fractal->zoom = 0.05;
     double x_frac = (double)x / WIDTH;
     double y_frac = (double)y / HEIGHT;
     double x_range = fractal->x_range_max - fractal->x_range_min;
@@ -38,6 +40,8 @@ void zoom_out(t_fractal *fractal, int x, int y)
 {
     double zoom_factor = 0.5; // Change this to zoom out by a different amount
 	fractal->zoom *= zoom_factor;
+	if (fractal->zoom < 0.05)
+		fractal->zoom = 0.05;
     double x_frac = (double)x / WIDTH;
     double y_frac = (double)y / HEIGHT;
     double x_range = fractal->x_range_max - fractal->x_range_min;
