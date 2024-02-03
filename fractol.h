@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 21:05:53 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/03 01:10:02 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/03 22:50:17 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_fractal
 	int		x;
 	int		y;
 	int		max_iterations;
+	int		random;
 	double	offset_x;
 	double	offset_y;
 	double	zoom;

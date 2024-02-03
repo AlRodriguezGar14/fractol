@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:19:23 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/03 22:25:31 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/03 23:01:15 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,16 @@ int	mouse_hook(int keycode, int x, int y, t_fractal *fractal)
     return (0);
 }
 
+int	change_color(t_fractal *fractal)
+{
+	if (fractal->random > 0)
+	{
+		fractal->color_base += 2;
+		draw(fractal);
+	}
+	return (0);
+}
+
 int	key_hook(int keycode, t_fractal *fractal)
 {
 	if (keycode == ESC)
@@ -95,8 +105,8 @@ int	key_hook(int keycode, t_fractal *fractal)
 		move_down(fractal);
 	if (keycode == RANDOM)
 	{
-		fractal->color_base = rand() % INT_MAX;
-		draw(fractal);
+		fractal->random *= -1;	
+		mlx_loop_hook(fractal->mlx, change_color, fractal);
 	}
 	if (keycode == PLUS)
 	{
