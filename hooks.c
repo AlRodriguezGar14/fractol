@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:19:23 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/03 23:01:15 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/03 23:17:29by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,17 @@ int	change_color(t_fractal *fractal)
 	return (0);
 }
 
+void	reset(t_fractal *fractal)
+{
+	fractal->zoom = 1;
+	fractal->random = -1;
+	fractal->x_range_min = -2.0;
+	fractal->x_range_max = 2.0;
+	fractal->y_range_min = -2.0;
+	fractal->y_range_max = 2.0;
+	draw(fractal);
+}
+
 int	key_hook(int keycode, t_fractal *fractal)
 {
 	if (keycode == ESC)
@@ -103,7 +114,9 @@ int	key_hook(int keycode, t_fractal *fractal)
 		move_up(fractal);
 	if (keycode == DOWN)
 		move_down(fractal);
-	if (keycode == RANDOM)
+	if (keycode == RESET)
+		reset(fractal);
+	if (keycode == COLOR_RANDOM)
 	{
 		fractal->random *= -1;	
 		mlx_loop_hook(fractal->mlx, change_color, fractal);

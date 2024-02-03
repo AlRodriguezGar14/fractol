@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 21:05:53 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/03 22:50:17 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/03 23:27:57 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@
 #define DOWN 125 
 #define PLUS 35 
 #define MINUS 46 
-#define RANDOM 15 
+#define RESET 15 
+#define COLOR_RANDOM 8 
 
 
 typedef struct s_fractal
