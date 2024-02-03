@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:19:23 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/03 00:59:26 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/03 01:16:05 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,6 @@ void zoom_out(t_fractal *fractal, int x, int y)
     fractal->y_range_max += (1 - y_frac) * y_range * zoom_factor;
 }
 
-// void zoom_out(t_fractal *fractal)
-// {
-// 	fractal->x_range_max *= 1.5; 
-// 	fractal->x_range_min *= 1.5; 
-// 	fractal->y_range_max *= 1.5; 
-// 	fractal->y_range_min *= 1.5; 
-// }
-// void zoom_in(t_fractal *fractal)
-// {
-// 	fractal->x_range_max *= 0.8; 
-// 	fractal->x_range_min *= 0.8; 
-// 	fractal->y_range_max *= 0.8; 
-// 	fractal->y_range_min *= 0.8; 
-// }
-
 int	mouse_hook(int keycode, int x, int y, t_fractal *fractal)
 {
     ft_printf("x: %d\ny: %d\n", x, y);
@@ -90,6 +75,11 @@ int	key_hook(int keycode, t_fractal *fractal)
 		move_up(fractal);
 	if (keycode == DOWN)
 		move_down(fractal);
+	if (keycode == RANDOM)
+	{
+		fractal->color_base = rand() % INT_MAX;
+		draw(fractal);
+	}
 	if (keycode == PLUS)
 	{
 		fractal->max_iterations += 50;

@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 21:05:53 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/03 00:00:54 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/03 01:10:02 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 #define DOWN 125 
 #define PLUS 35 
 #define MINUS 46 
+#define RANDOM 15 
 
 
 typedef struct s_fractal
@@ -74,8 +75,8 @@ void	init_mlx(t_fractal *fractal);
 double	scale(double unscaled, double old_max, double new_min, double new_max);
 
 // Draw
-void    my_mlx_pixel_put(t_fractal *fractal, int x, int y, int color);
 void	draw(t_fractal *fractal);
+void    my_mlx_pixel_put(t_fractal *fractal, int x, int y, int color);
 
 // Hooks
 int	close_window(t_fractal *fractal);

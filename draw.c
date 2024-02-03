@@ -54,7 +54,8 @@ void	mandelbrot(t_fractal *fractal)
         if (iteration == fractal->max_iterations)
             my_mlx_pixel_put(fractal, fractal->x, fractal->y, 0x000000);
         else
-            my_mlx_pixel_put(fractal, fractal->x, fractal->y, fractal->color_base + 0x002200 * iteration);
+            my_mlx_pixel_put(fractal, fractal->x, fractal->y, fractal->color_base * iteration);
+            // my_mlx_pixel_put(fractal, fractal->x, fractal->y, fractal->color_base + 0x002200 * iteration);
     }
 }
 
