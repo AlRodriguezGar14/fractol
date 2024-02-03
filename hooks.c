@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:19:23 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/03 01:16:05 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/03 22:25:31 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,54 @@ int	close_window(t_fractal *fractal)
 	exit(1);
 	return (0);
 }
+
+static double	mouse_relative_position(int pixel, int size)
+{
+	return ((double)pixel / size);
+}
+
 void zoom_in(t_fractal *fractal, int x, int y)
 {
-    double zoom_factor = 0.5; // Change this to zoom in by a different amount
+    double	mouse_x_relative;
+    double	mouse_y_relative;
+    double	zoom_factor; 
+	double	x_range;
+	double	y_range;
+
+    zoom_factor = 0.5; 
 	fractal->zoom *= zoom_factor;
 	if (fractal->zoom < 0.05)
 		fractal->zoom = 0.05;
-    double x_frac = (double)x / WIDTH;
-    double y_frac = (double)y / HEIGHT;
-    double x_range = fractal->x_range_max - fractal->x_range_min;
-    double y_range = fractal->y_range_max - fractal->y_range_min;
-    fractal->x_range_min += x_frac * x_range * zoom_factor;
-    fractal->x_range_max -= (1 - x_frac) * x_range * zoom_factor;
-    fractal->y_range_min += y_frac * y_range * zoom_factor;
-    fractal->y_range_max -= (1 - y_frac) * y_range * zoom_factor;
+    mouse_x_relative = mouse_relative_position(x, WIDTH);
+    mouse_y_relative = mouse_relative_position(y, HEIGHT);
+	x_range = fractal->x_range_max - fractal->x_range_min;
+    y_range = fractal->y_range_max - fractal->y_range_min;
+    fractal->x_range_min += mouse_x_relative * x_range * zoom_factor;
+    fractal->x_range_max -= (1 - mouse_x_relative) * x_range * zoom_factor;
+    fractal->y_range_min += mouse_y_relative * y_range * zoom_factor;
+    fractal->y_range_max -= (1 - mouse_y_relative) * y_range * zoom_factor;
 }
 
 void zoom_out(t_fractal *fractal, int x, int y)
 {
-    double zoom_factor = 0.5; // Change this to zoom out by a different amount
+    double	mouse_x_relative;
+    double	mouse_y_relative;
+    double	zoom_factor; 
+	double	x_range;
+	double	y_range;
+
+    zoom_factor = 0.5; 
 	fractal->zoom *= zoom_factor;
 	if (fractal->zoom < 0.05)
 		fractal->zoom = 0.05;
-    double x_frac = (double)x / WIDTH;
-    double y_frac = (double)y / HEIGHT;
-    double x_range = fractal->x_range_max - fractal->x_range_min;
-    double y_range = fractal->y_range_max - fractal->y_range_min;
-    fractal->x_range_min -= x_frac * x_range * zoom_factor;
-    fractal->x_range_max += (1 - x_frac) * x_range * zoom_factor;
-    fractal->y_range_min -= y_frac * y_range * zoom_factor;
-    fractal->y_range_max += (1 - y_frac) * y_range * zoom_factor;
+    mouse_x_relative = mouse_relative_position(x, WIDTH);
+    mouse_y_relative = mouse_relative_position(y, HEIGHT);
+	x_range = fractal->x_range_max - fractal->x_range_min;
+    y_range = fractal->y_range_max - fractal->y_range_min;
+    fractal->x_range_min -= mouse_x_relative * x_range * zoom_factor;
+    fractal->x_range_max += (1 - mouse_x_relative) * x_range * zoom_factor;
+    fractal->y_range_min -= mouse_y_relative * y_range * zoom_factor;
+    fractal->y_range_max += (1 - mouse_y_relative) * y_range * zoom_factor;
 }
 
 int	mouse_hook(int keycode, int x, int y, t_fractal *fractal)
@@ -82,7 +100,7 @@ int	key_hook(int keycode, t_fractal *fractal)
 	}
 	if (keycode == PLUS)
 	{
-		fractal->max_iterations += 50;
+		fractal->max_iterations += 25;
     	draw(fractal);
 	}
 	if (keycode == MINUS)
