@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 18:19:23 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/03 23:17:29by alberrod         ###   ########.fr       */
+/*   Created: 2024/02/02 23:12:15 by alberrod          #+#    #+#             */
+/*   Updated: 2024/02/04 19:06:15 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 int	close_window(t_fractal *fractal)
 {
-	mlx_destroy_window(fractal->mlx, fractal->window);
 	// Pending to write a function to properly free the fractal
+	// and the mlx pointers
+	mlx_destroy_window(fractal->mlx, fractal->window);
+	mlx_destroy_image(fractal->mlx, fractal->image);
+	free(fractal->mlx);
+	free(fractal->name);
 	free(fractal);
-	exit(1);
-	return (0);
+	exit(0);
 }
 
 static double	mouse_relative_position(int pixel, int size)
