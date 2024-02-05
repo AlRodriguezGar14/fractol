@@ -3,6 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/02 23:12:15 by alberrod          #+#    #+#             */
+/*   Updated: 2024/02/05 23:40:45 by alberrod         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 21:05:53 by alberrod          #+#    #+#             */
@@ -36,7 +48,10 @@
 #define PLUS 35 
 #define MINUS 46 
 #define RESET 15 
-#define COLOR_RANDOM 8 
+#define ON_MOUSE_MOVE 6
+#define COLOR_RANDOM 8
+#define PRESS_X 17
+
 
 
 typedef struct s_fractal
@@ -50,10 +65,10 @@ typedef struct s_fractal
     int     size_line;
     int     endian;
 	int		color_base;
-	int		x;
-	int		y;
 	int		max_iterations;
 	int		random;
+	double	x;
+	double	y;
 	double	offset_x;
 	double	offset_y;
 	double	zoom;
@@ -84,6 +99,7 @@ void    my_mlx_pixel_put(t_fractal *fractal, int x, int y, int color);
 int	close_window(t_fractal *fractal);
 int	mouse_hook(int keycode, int x, int y, t_fractal *fractal);
 int	key_hook(int keycode, t_fractal *fractal);
+int mouse_pos(int x, int y, t_fractal *fractal);
 
 // Movement
 void	move_left(t_fractal *fractal);

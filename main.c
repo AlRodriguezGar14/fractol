@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 22:45:01 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/04 18:48:09 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/05 23:40:53 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 /* ************************************************************************** */
 
 #include "fractol.h"
-
 
 int	main(int argc, char **argv)
 {
@@ -44,7 +43,8 @@ int	main(int argc, char **argv)
 
 	mlx_key_hook(fractal->window, key_hook, fractal);
 	mlx_mouse_hook(fractal->window, mouse_hook, fractal);
-	mlx_hook(fractal->window, 17, 0, close_window, fractal);
+	mlx_hook(fractal->window, PRESS_X, 0, close_window, fractal);
+	mlx_hook(fractal->window, ON_MOUSE_MOVE, 0, mouse_pos, fractal);
 	mlx_loop(fractal->mlx);
 
 	return (0);	

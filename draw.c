@@ -6,13 +6,14 @@
 /*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 23:12:15 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/04 18:27:02 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/05 23:37:46 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double scale(double unscaled, double old_max, double new_min, double new_max) {
+double scale(double unscaled, double old_max, double new_min, double new_max)
+{
 	return ((new_max - new_min) * (unscaled - 0) / (old_max - 0) + new_min);
 }
 
@@ -106,7 +107,8 @@ void	draw(t_fractal *fractal)
     {
         fractal->x = -1;
         while (++fractal->x < WIDTH - 1)
-            mandelbrot(fractal);
+			if (ft_strncmp(fractal->name, "mandelbrot", ft_strlen("mandelbrot")) == 0)
+                mandelbrot(fractal);
     }
     mlx_put_image_to_window(fractal->mlx,
 							fractal->window,

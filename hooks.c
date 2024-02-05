@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 23:12:15 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/04 19:06:15 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/05 23:34:35 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ int	close_window(t_fractal *fractal)
 	free(fractal->name);
 	free(fractal);
 	exit(0);
+}
+
+int mouse_pos(int x, int y, t_fractal *fractal)
+{
+	fractal->x = scale(x,WIDTH, fractal->x_range_min, fractal->x_range_max);
+	fractal->y = scale(y, WIDTH, fractal->y_range_min, fractal->y_range_max);
+//	fractal->x = (double)x / WIDTH;
+//	fractal->y = (double)y / WIDTH;
+	printf("mouse position:\n\tx: %f\n\ty: %f\n", fractal->x, fractal->y);
+	return (0);
 }
 
 static double	mouse_relative_position(int pixel, int size)
@@ -75,7 +85,6 @@ void zoom_out(t_fractal *fractal, int x, int y)
 
 int	mouse_hook(int keycode, int x, int y, t_fractal *fractal)
 {
-    ft_printf("x: %d\ny: %d\n", x, y);
     if (keycode == ZOOM_IN)
         zoom_in(fractal, x, y);
     if (keycode == ZOOM_OUT)
