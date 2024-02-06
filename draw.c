@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 23:12:15 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/05 23:37:46 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/06 12:12:35 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void    set_fractal_for_mandelbrot(t_fractal *fractal)
                 HEIGHT - 1,
                 fractal->y_range_min,
                 fractal->y_range_max);
-
 }
 
 // The formula for the Mandelbrot set is z = z^2 + c, where z and c are
@@ -100,18 +99,65 @@ void	mandelbrot(t_fractal *fractal)
 						 fractal->color_base * iteration);
 }
 
+// In julia, the constants are inverted:
+// and the c, instead of the location of the pixel, is the mouse position.
+// while the z is the position of the pixel instead of 0.
+void    set_fractal_for_julia(t_fractal *fractal)
+{
+	double  aspect_ratio;
+
+	aspect_ratio = (double)WIDTH / HEIGHT;
+	fractal->z_real = scale(fractal->x,
+	                        WIDTH - 1,
+	                        fractal->x_range_min * aspect_ratio,
+	                        fractal->x_range_max * aspect_ratio);
+	fractal->z_imaginary = scale(fractal->y,
+	                             HEIGHT - 1,
+	                             fractal->y_range_min,
+	                             fractal->y_range_max);
+	fractal->c_real = fractal->mouse_x;
+	fractal->c_imaginary = fractal->mouse_y;
+}
+
+void julia(t_fractal *fractal)
+{
+	int iteration;
+	double z_real_squared;
+	double z_imaginary_squared;
+
+	iteration = -1;
+	set_fractal_for_julia(fractal);
+	while (++iteration < fractal->max_iterations)
+	{
+		z_real_squared = fractal->z_real * fractal->z_real;
+		z_imaginary_squared = fractal->z_imaginary * fractal->z_imaginary;
+		if (z_real_squared + z_imaginary_squared > 4.0)
+			break;
+		double temp = z_real_squared - z_imaginary_squared + fractal->c_real;
+		fractal->z_imaginary = 2.0 * fractal->z_real * fractal->z_imaginary + fractal->c_imaginary;
+		fractal->z_real = temp;
+	}
+	if (iteration == fractal->max_iterations)
+		my_mlx_pixel_put(fractal, fractal->x, fractal->y, 0x000000);
+	else
+		my_mlx_pixel_put(fractal, fractal->x, fractal->y, fractal->color_base * iteration);
+}
 void	draw(t_fractal *fractal)
 {
-    fractal->y = -1;
-    while (++fractal->y < HEIGHT - 1)
-    {
-        fractal->x = -1;
-        while (++fractal->x < WIDTH - 1)
-			if (ft_strncmp(fractal->name, "mandelbrot", ft_strlen("mandelbrot")) == 0)
-                mandelbrot(fractal);
-    }
-    mlx_put_image_to_window(fractal->mlx,
-							fractal->window,
-							fractal->image,
-							0, 0);
+	fractal->y = -1;
+	while (++fractal->y < HEIGHT - 1)
+	{
+		fractal->x = -1;
+		while (++fractal->x < WIDTH - 1)
+		{
+			if (!ft_strncmp(fractal->name, "mandelbrot", 10))
+				mandelbrot(fractal);
+			else if (!ft_strncmp(fractal->name, "julia", 5))
+				julia(fractal);
+		}
+	}
+	mlx_put_image_to_window(fractal->mlx,
+	                        fractal->window,
+	                        fractal->image,
+	                        0, 0);
 }
