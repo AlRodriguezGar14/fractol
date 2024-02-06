@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 23:12:15 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/05 23:40:45 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:31:27 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_fractal
 	int		random;
 	double	x;
 	double	y;
+	double	mouse_x;
+	double	mouse_y;
 	double	offset_x;
 	double	offset_y;
 	double	zoom;
@@ -96,7 +98,7 @@ void	draw(t_fractal *fractal);
 void    my_mlx_pixel_put(t_fractal *fractal, int x, int y, int color);
 
 // Hooks
-int	close_window(t_fractal *fractal);
+int	end_program(t_fractal *fractal);
 int	mouse_hook(int keycode, int x, int y, t_fractal *fractal);
 int	key_hook(int keycode, t_fractal *fractal);
 int mouse_pos(int x, int y, t_fractal *fractal);

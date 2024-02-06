@@ -6,13 +6,13 @@
 /*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 23:12:15 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/05 23:34:35 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:31:46 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	close_window(t_fractal *fractal)
+int	end_program(t_fractal *fractal)
 {
 	// Pending to write a function to properly free the fractal
 	// and the mlx pointers
@@ -26,11 +26,9 @@ int	close_window(t_fractal *fractal)
 
 int mouse_pos(int x, int y, t_fractal *fractal)
 {
-	fractal->x = scale(x,WIDTH, fractal->x_range_min, fractal->x_range_max);
-	fractal->y = scale(y, WIDTH, fractal->y_range_min, fractal->y_range_max);
-//	fractal->x = (double)x / WIDTH;
-//	fractal->y = (double)y / WIDTH;
-	printf("mouse position:\n\tx: %f\n\ty: %f\n", fractal->x, fractal->y);
+	fractal->mouse_x = scale(x,WIDTH, fractal->x_range_min, fractal->x_range_max);
+	fractal->mouse_y = scale(y, WIDTH, fractal->y_range_min, fractal->y_range_max);
+	printf("mouse position:\n\tx: %f\n\ty: %f\n", fractal->mouse_x, fractal->mouse_y);
 	return (0);
 }
 
@@ -117,7 +115,7 @@ void	reset(t_fractal *fractal)
 int	key_hook(int keycode, t_fractal *fractal)
 {
 	if (keycode == ESC)
-		close_window(fractal);
+		end_program(fractal);
 	if (keycode == LEFT)
 		move_left(fractal);
 	if (keycode == RIGHT)
