@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 23:12:15 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/06 11:31:46 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:46:12 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int mouse_pos(int x, int y, t_fractal *fractal)
 	fractal->mouse_x = scale(x,WIDTH, fractal->x_range_min, fractal->x_range_max);
 	fractal->mouse_y = scale(y, WIDTH, fractal->y_range_min, fractal->y_range_max);
 	printf("mouse position:\n\tx: %f\n\ty: %f\n", fractal->mouse_x, fractal->mouse_y);
+	if (!ft_strncmp(fractal->name, "julia", 5))
+		draw(fractal);
 	return (0);
 }
 

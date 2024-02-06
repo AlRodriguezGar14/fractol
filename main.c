@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 22:45:01 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/06 11:32:02 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:51:43 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_fd_printf(2, "How to use: ./fractol mandelbrot\n");
+		ft_fd_printf(2, "How to use: ./fractol mandelbrot | julia\n");
 		return (1);
 	}
 	fractal = (t_fractal *)malloc(sizeof(t_fractal));
