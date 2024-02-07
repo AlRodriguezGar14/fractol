@@ -14,7 +14,8 @@ CFILES = main.c \
 		init.c  \
 		draw.c  \
 		hooks.c  \
-		move_fractal.c
+		move_fractal.c \
+		draw_utils.c
 
 OFILES = $(CFILES:.c=.o)
 
