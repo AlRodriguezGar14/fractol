@@ -1,6 +1,6 @@
 CC       = cc
 LIBFT_DIR    = utils/
-MINILIBX_DIR = mlx/
+MINILIBX_DIR = .mlx/
 MINILIBX = $(MINILIBX_DIR)libmlx.a
 FRACTOL_DIR  = .
 # CFLAGS   = -Wall -Wextra -Werror -g3 -fsanitize=address
