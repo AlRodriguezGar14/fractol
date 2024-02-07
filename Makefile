@@ -1,10 +1,10 @@
 CC       = cc
-LIBFT_DIR    = utils
+LIBFT_DIR    = utils/
 MINILIBX_DIR = mlx/
 MINILIBX = $(MINILIBX_DIR)libmlx.a
 FRACTOL_DIR  = .
- CFLAGS   = -Wall -Wextra -Werror -g3 -fsanitize=address
-# CFLAGS   = -Wall -Wextra -Werror -g3
+# CFLAGS   = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS   = -Wall -Wextra -Werror -O3 -g3
 #CFLAGS   = -g3
 HEADERS  = -I $(FRACTOL_DIR) -I utils
 NAME     = fractol

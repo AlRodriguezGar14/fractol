@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alberrod <alberrod@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 23:12:15 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/07 09:17:23 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/07 09:56:53 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ void	draw(t_fractal *fractal)
 			draw_fractal(fractal);
 		}
 	}
+    mlx_clear_window(fractal->mlx, fractal->window);
 	mlx_put_image_to_window(fractal->mlx,
 	                        fractal->window,
 	                        fractal->image,
