@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 23:12:15 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/07 10:10:17 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/07 11:54:44 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,12 @@ int	end_program(t_fractal *fractal);
 int	mouse_hook(int keycode, int x, int y, t_fractal *fractal);
 int	key_hook(int keycode, t_fractal *fractal);
 int mouse_pos(int x, int y, t_fractal *fractal);
+void	zoom_out(t_fractal *fractal, int x, int y);
+void	zoom_in(t_fractal *fractal, int x, int y);
+int	change_color(t_fractal *fractal);
+void	reset(t_fractal *fractal);
+void	plus(t_fractal *fractal);
+void	minus(t_fractal *fractal);
 
 // Movement
 void	move_left(t_fractal *fractal);
