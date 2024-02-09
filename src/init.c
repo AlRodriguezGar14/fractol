@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:13:29 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/09 04:35:09by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/09 04:54:47 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 void	check_input(int argc, char **argv)
 {
 	if ((argc != 2 && argc != 4)
-		|| (!ft_strncmp(argv[1], "mandelbrot", 10) && argc != 2)
-		)
+		|| (!ft_strncmp(argv[1], "mandelbrot", 10) && argc != 2))
 	{
 		ft_fd_printf(2, "\n\tHow to use: ./fractol mandelbrot | julia\n");
 		ft_fd_printf(2, "\tOptional (Julia): set x and y based on AR %dx%d\n\n",
