@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 23:12:15 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/09 04:21:36 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/09 04:52:46 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	draw_fractal(t_fractal *fractal)
 void	draw(t_fractal *fractal)
 {
 	fractal->y = -1;
-	while (++fractal->y < HEIGHT - 1)
+	while (++fractal->y < HEIGHT)
 	{
 		fractal->x = -1;
-		while (++fractal->x < WIDTH - 1)
+		while (++fractal->x < WIDTH)
 		{
 			if (!ft_strncmp(fractal->name, "mandelbrot", 10))
 				set_fractal_for_mandelbrot(fractal);

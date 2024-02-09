@@ -1,8 +1,9 @@
 CC       = cc
 LIBFT_DIR    = utils/
+LIBFT    = $(LIBFT_DIR)libft.a
 MINILIBX_DIR = .mlx/
 MINILIBX = $(MINILIBX_DIR)libmlx.a
-FRACTOL_DIR  = .
+FRACTOL_DIR  = src/
 # CFLAGS   = -Wall -Wextra -Werror -g3 -fsanitize=address
 CFLAGS   = -Wall -Wextra -Werror -O3 -g3
 #CFLAGS   = -g3
@@ -23,11 +24,13 @@ CFILES = src/main.c \
 
 OFILES = $(CFILES:.c=.o)
 
-all: $(NAME)
+all: $(MINILIBX) $(LIBFT) $(NAME)
 
 $(NAME): $(MINILIBX) $(OFILES)
 	$(CC) $(CFLAGS) -L $(MINILIBX_DIR) -lmlx -lft $(HEADERS) -L $(LIBFT_DIR) $(OFILES) -framework OpenGL -framework AppKit -o $(NAME)
 
+$(LIBFT):
+	make -C $(LIBFT_DIR)
 
 $(MINILIBX):
 	make -C $(MINILIBX_DIR)
