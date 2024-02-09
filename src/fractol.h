@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 23:12:15 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/09 03:18:49 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/09 04:25:06 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@
 # include <stdlib.h>
 # include <math.h>
 # include <limits.h>
-# include ".mlx/mlx.h"
-# include "utils/libft.h"
+# include "../.mlx/mlx.h"
+# include "../utils/libft.h"
 
-// #define WIDTH 400 
-// #define HEIGHT 240 
 # define WIDTH 864 
 # define HEIGHT 486 
 
@@ -78,6 +76,10 @@ void	init_mlx(t_fractal *fractal);
 
 // Scale canvas
 double	scale(double unscaled, double old_max, double new_min, double new_max);
+
+// Set fractals
+void	set_fractal_for_mandelbrot(t_fractal *fractal);
+void	set_fractal_for_julia(t_fractal *fractal);
 
 // Draw
 void	draw(t_fractal *fractal);

@@ -10,14 +10,16 @@ HEADERS  = -I $(FRACTOL_DIR) -I utils
 NAME     = fractol
 RM       = rm -rf
 
-CFILES = main.c \
-		init.c  \
-		draw.c  \
-		hooks.c  \
-		move_fractal.c \
-		draw_utils.c \
-		mouse_hooks.c \
-		key_hook.c
+CFILES = src/main.c \
+		src/init.c  \
+		src/draw.c  \
+		src/hooks.c  \
+		src/move_fractal.c \
+		src/draw_utils.c \
+		src/mouse_hooks.c \
+		src/key_hook.c \
+		src/fractals/mandelbrot.c \
+		src/fractals/julia.c \
 
 OFILES = $(CFILES:.c=.o)
 
