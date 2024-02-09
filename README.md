@@ -10,6 +10,7 @@ This projects draws in a window created with the 42 native library MiniLibx the 
 -  Zoom in / zoom out with the mouse.
 -  Use 'p' to add more operations when drawing the fractal. Use 'm' to reduce the number of operations.
 -  Use 'c' to generate random colors within the set.
+-  Use 'r' reset the view of the fractal.
 -  If the chosen set is Julia, use the mouse to discover different figures based on the relative position.
 -  If the chosen set is Julia, enter the x and y coordenates as inputs based on the given Aspect Ratio to start with a particular figure.
   
