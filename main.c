@@ -6,19 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 22:45:01 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/07 12:11:43 by alberrod         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 18:00:22 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/04 00:03:17 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/09 03:03:18by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +16,14 @@ int	main(int argc, char **argv)
 {
 	t_fractal	*fractal;
 
-	if (argc != 2)
-	{
-		ft_fd_printf(2, "How to use: ./fractol mandelbrot | julia\n");
-		return (1);
-	}
+	check_input(argc, argv);
 	fractal = (t_fractal *)malloc(sizeof(t_fractal));
 	if (!fractal)
 		return (1);
 	init_fractal(fractal, argv[1]);
 	init_mlx(fractal);
+	if (argc == 4)
+		mouse_pos(ft_atoi(argv[2]), ft_atoi(argv[3]), fractal);
 	draw(fractal);
 	mlx_key_hook(fractal->window, key_hook, fractal);
 	mlx_mouse_hook(fractal->window, mouse_hook, fractal);

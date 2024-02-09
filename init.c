@@ -6,13 +6,24 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:13:29 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/07 12:13:28 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/09 03:18:27 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	init_fractal(t_fractal *fractal, char *name);
+void	check_input(int argc, char **argv)
+{
+	if ((argc != 2 && argc != 4)
+		|| (!ft_strncmp(argv[1], "mandelbrot", 10) && argc != 2)
+		|| !ft_strncmp(argv[1], "help", 4))
+	{
+		ft_fd_printf(2, "\n\tHow to use: ./fractol mandelbrot | julia\n");
+		ft_fd_printf(2, "\tOptional (Julia): set x and y based on AR %dx%d\n\n",
+			WIDTH, HEIGHT);
+		exit(1);
+	}
+}
 
 void	init_fractal(t_fractal *fractal, char *name)
 {
