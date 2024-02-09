@@ -27,7 +27,8 @@ OFILES = $(CFILES:.c=.o)
 all: $(MINILIBX) $(LIBFT) $(NAME)
 
 $(NAME): $(MINILIBX) $(OFILES)
-	$(CC) $(CFLAGS) -L $(MINILIBX_DIR) -lmlx -lft $(HEADERS) -L $(LIBFT_DIR) $(OFILES) -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(CFLAGS) -L $(MINILIBX_DIR) -lmlx -lft $(HEADERS) -L $(LIBFT_DIR) \
+	$(OFILES) -framework OpenGL -framework AppKit -o $(NAME)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)

@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 23:12:15 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/09 04:25:06 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:10:34 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_fractal
 }	t_fractal;
 
 // Init
-void	check_input(int argc, char **argv);
+void	check_input(int argc, const char **argv);
 void	init_fractal(t_fractal *fractal, char *name);
 void	init_mlx(t_fractal *fractal);
 
