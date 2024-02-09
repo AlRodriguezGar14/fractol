@@ -14,27 +14,32 @@
 
 static void	init_error()
 {
-		ft_fd_printf(1, "\n\tHow to use: ./fractol mandelbrot | julia\n");
-		ft_fd_printf(1, "\tOptional (Julia): set x and y based on AR %dx%d\n\n",
+		ft_fd_printf(2, "\n\tHow to use: ./fractol mandelbrot | julia\n");
+		ft_fd_printf(2, "\tOptional (Julia): set x and y based on AR %dx%d\n\n",
 			WIDTH, HEIGHT);
-		ft_fd_printf(1, "\n\tControls:\n");
-		ft_fd_printf(1, "\t\tp : +25 operations\n\t\tm : -25 operations\n");
-		ft_fd_printf(1, "\t\tc : random colors\n\t\tr : reset view\n\n");
+		ft_fd_printf(2, "\tDon't use params to set the default x-0 and y-0");
+		ft_fd_printf(2, "\n\tControls:\n");
+		ft_fd_printf(2, "\t\tp : +25 operations\n\t\tm : -25 operations\n");
+		ft_fd_printf(2, "\t\tc : random colors\n\t\tr : reset view\n\n");
 		exit(1);
 }
-void	check_input(int argc, const char **argv)
+void	check_input(int argc, char **argv)
 {
+	char	*x;
+	char	*y;
 	if (argc != 2 && argc != 4)
 		init_error();
 	if (argc == 4)
 	{
+		x = argv[2];
+		y = argv[3];
 		if (!ft_strncmp(argv[1], "mandelbrot", 10))
 			init_error();
-		while (*argv[2] || *argv[3])
+		while (*x || *y)
 		{
-			if (*argv[2] && !ft_isdigit(*argv[2]++))
+			if (*x && !ft_isdigit(*x++))
 				init_error();
-			if (*argv[3] && !ft_isdigit(*argv[3]++))
+			if (*y && !ft_isdigit(*y++))
 				init_error();
 		}
 	}

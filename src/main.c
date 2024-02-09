@@ -6,7 +6,7 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 22:45:01 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/09 03:28:53 by alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:18:16 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	main(int argc, char **argv)
 	init_fractal(fractal, argv[1]);
 	init_mlx(fractal);
 	if (argc == 4)
+	{
 		mouse_pos(ft_atoi(argv[2]), ft_atoi(argv[3]), fractal);
+		printf("mouse pos = x: %d y: %d\n", ft_atoi(argv[2]), ft_atoi(argv[3]));
+	}
 	draw(fractal);
 	mlx_key_hook(fractal->window, key_hook, fractal);
 	mlx_mouse_hook(fractal->window, mouse_hook, fractal);
