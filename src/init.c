@@ -6,27 +6,29 @@
 /*   By: alberrod <alberrod@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 18:13:29 by alberrod          #+#    #+#             */
-/*   Updated: 2024/02/09 16:58:53y alberrod         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:31:46 by alberrod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	init_error()
+static void	init_error(void)
 {
-		ft_fd_printf(2, "\n\tHow to use: ./fractol mandelbrot | julia\n");
-		ft_fd_printf(2, "\tOptional (Julia): set x and y based on AR %dx%d\n\n",
-			WIDTH, HEIGHT);
-		ft_fd_printf(2, "\tDon't use params to set the default x-0 and y-0");
-		ft_fd_printf(2, "\n\tControls:\n");
-		ft_fd_printf(2, "\t\tp : +25 operations\n\t\tm : -25 operations\n");
-		ft_fd_printf(2, "\t\tc : random colors\n\t\tr : reset view\n\n");
-		exit(1);
+	ft_fd_printf(2, "\n\tHow to use: ./fractol mandelbrot | julia\n");
+	ft_fd_printf(2, "\tOptional (Julia): set x and y based on AR %dx%d\n\n",
+		WIDTH, HEIGHT);
+	ft_fd_printf(2, "\tDon't use params to set the default x-0 and y-0");
+	ft_fd_printf(2, "\n\tControls:\n");
+	ft_fd_printf(2, "\t\tp : +25 operations\n\t\tm : -25 operations\n");
+	ft_fd_printf(1, "\t\tc : random colors\n\t\tr : reset view\n\n");
+	exit(1);
 }
+
 void	check_input(int argc, char **argv)
 {
 	char	*x;
 	char	*y;
+
 	if (argc != 2 && argc != 4)
 		init_error();
 	if (argc == 4)
