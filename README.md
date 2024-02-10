@@ -1,7 +1,14 @@
+███████╗██████╗  █████╗  ██████╗████████╗    ██████╗ ██╗     
+██╔════╝██╔══██╗██╔══██╗██╔════╝╚══██╔══╝   ██╔═══██╗██║     
+█████╗  ██████╔╝███████║██║        ██║█████╗██║   ██║██║     
+██╔══╝  ██╔══██╗██╔══██║██║        ██║╚════╝██║   ██║██║     
+██║     ██║  ██║██║  ██║╚██████╗   ██║      ╚██████╔╝███████╗
+╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═╝       ╚═════╝ ╚══════╝
+                                                             
+
+![Hipnosapo](img/hipnosapo-min.jpeg)
+
 # Fractol
-
-![fractol](https://i.gifer.com/CeXV.gif)
-
 
 This projects draws in a window created with the 42 native library MiniLibx the Mandelbrot and Julia sets. Instead of these being static images, the library enables some interactivity.
 
@@ -111,3 +118,17 @@ void	set_fractal_for_julia(t_fractal *fractal)
 	fractal->c_imaginary = fractal->mouse_y;
 }
 ```
+
+***
+
+## Useful introductory documentation:
+
+- [What's so special about the Mandelbrot Set? - Numberphile](https://www.youtube.com/watch?v=FFftmWSzgmk&list=PLt5AfwLFPxWL7NpD_DKO28XhS0Ugctkpu)
+- [The Mandelbrot Set - Numberphile](https://www.youtube.com/watch?v=NGMRB4O922I)
+- [Filled Julia Set](https://www.youtube.com/watch?v=oCkQ7WK7vuY)
+- [Math's Famous Fractal: The Mandelbrot Set](https://www.youtube.com/watch?v=u9GAnW8xFJY)
+- [Complex Number Multiplication](https://www.mathsisfun.com/algebra/complex-number-multiply.html)
+- [Complex Numbers](https://www.mathsisfun.com/numbers/complex-numbers.html)
+- [How do you find the square of a complex number?](https://www.quora.com/How-do-you-find-the-square-of-a-complex-number)
+- [Scaling to match the size](https://stackoverflow.com/questions/17297296/scaling-to-match-the-size)
+- [42Docs MiniLibx](https://harm-smits.github.io/42docs/libs/minilibx)
