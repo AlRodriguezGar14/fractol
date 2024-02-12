@@ -1,4 +1,4 @@
-![Fractol](img/fractol_title.png)
+![Fractol](img/title.png)
 ![Hipnosapo](img/hipnosapo-min.jpeg)
 
 # Fractol
